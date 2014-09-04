@@ -1,0 +1,11 @@
+@mixin ar-checkable($font-size: inherit, $line-height: 1, $display: block) {
+  display: $display;
+  line-height: $line-height;
+  font-size: $font-size;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@mixin ar-checkable__input($spacing: 0.4em) {
+  margin-right: $spacing;
+}

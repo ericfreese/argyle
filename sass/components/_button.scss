@@ -1,0 +1,8 @@
+@import "../helpers/padding";
+
+@mixin ar-button_height($height, $line-height: false, $border-height: 0, $font-size: false) {
+  $line-height: if($line-height, $line-height, $height - $border-height);
+  line-height: $line-height;
+  @if $font-size { font-size: $font-size; }
+  @include ar-padding-y(($height - $line-height - $border-height) / 2);
+}

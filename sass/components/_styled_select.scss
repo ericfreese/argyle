@@ -1,0 +1,57 @@
+@import "../helpers/padding";
+@import "../helpers/new_stacking_context";
+
+@mixin ar-styled-select($display: inline-block) {
+  @include ar-new-stacking-context;
+  display: $display;
+}
+
+@mixin ar-styled-select--size($height: false, $line-height: false, $border-height: 0, $font-size: false) {
+  @if $height {
+    height: $height;
+    box-sizing: border-box;
+  }
+
+  @if $line-height {
+    line-height: $line-height;
+  }
+
+  @if $height and $line-height {
+    @include ar-calculate-padding-y($height, $line-height, $border-height);
+  }
+}
+
+@mixin ar-styled-select__select {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+@mixin ar-styled-select__dropdown($width: 20px, $height: 10px, $font-size: 0.5em) {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -($height / 2);
+  line-height: $height;
+  width: $width;
+  text-align: center;
+  font-size: $font-size;
+}
+
+@mixin ar-styled-select__dropdown--pseudo($width: 30px, $height: 10px, $pseudo: after, $content: '▼') {
+  padding-right: $width;
+
+  &:#{$pseudo} {
+    content: $content;
+    position: relative;
+    z-index: -1;
+    @include ar-styled-select__dropdown($width, $height);
+  }
+}

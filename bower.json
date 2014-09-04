@@ -1,0 +1,24 @@
+{
+  "name": "argyle",
+  "version": "0.0.1",
+  "authors": [
+    "Eric Freese <ericdfreese@gmail.com>"
+  ],
+  "description": "A minimally opinionated library of common frontend patterns that stay out of your way.",
+  "keywords": [
+    "argyle",
+    "frontend",
+    "patterns",
+    "sass",
+    "js"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ericfreese/argyle",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
