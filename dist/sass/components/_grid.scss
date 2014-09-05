@@ -1,0 +1,65 @@
+@import "../context";
+@import "../helpers/breakpoints";
+@import "../helpers/clearfix";
+
+@mixin ar-grid-container() {
+  $grid: ar-require-context("grid");
+  $breakpoints: ar-require-context("breakpoints");
+
+  $container-margin: map-get($grid, "container-margin");
+  $container-widths: map-get($grid, "container-widths");
+
+  max-width: 100%;
+
+  @if $container-margin {
+    margin-left: $container-margin;
+    margin-right: $container-margin;
+  }
+
+  @if $container-widths {
+    @each $breakpoint, $min-width in $breakpoints {
+      @if (map-has-key($container-widths, $breakpoint)) {
+        @media (min-width: #{$min-width}) {
+          width: map-get($container-widths, $breakpoint);
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+
+@mixin ar-grid-row() {
+  $grid: ar-require-context("grid");
+
+  $gutter-width: map-get($grid, "gutter-width");
+
+  @if ($gutter-width) {
+    margin-left: -($gutter-width / 2);
+    margin-right: -($gutter-width / 2);
+  }
+
+  @include ar-clearfix;
+}
+
+@mixin ar-grid-row-item($width) {
+  $grid: ar-require-context("grid");
+
+  $gutter-width: map-get($grid, "gutter-width");
+
+  padding-left: $gutter-width / 2;
+  padding-right: $gutter-width / 2;
+  box-sizing: border-box;
+  float: left;
+  width: $width;
+}
+
+@mixin ar-grid-cols($cols, $from: null, $to: null) {
+  $grid: ar-require-context("grid");
+
+  $columns: map-get($grid, "columns");
+
+  @include ar-breakpoint-query($from, $to) {
+    @include ar-grid-row-item(percentage($cols / $columns));
+  }
+}

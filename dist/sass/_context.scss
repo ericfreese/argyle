@@ -1,0 +1,15 @@
+$ar-context: ();
+
+@mixin ar-set-context($new-contexts) {
+  $ar-context: map-merge($ar-context, $new-contexts) !global;
+}
+
+@function ar-get-context($context) {
+  @return map-get($ar-context, $context);
+}
+
+@function ar-require-context($context) {
+  $value: map-get($ar-context, $context);
+  @if $value == null { @error "No '#{$context}' context specified." }
+  @return $value;
+}
