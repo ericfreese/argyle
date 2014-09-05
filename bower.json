@@ -1,6 +1,7 @@
 {
   "name": "argyle",
   "version": "0.0.1",
+  "main": "_argyle.scss",
   "authors": [
     "Eric Freese <ericdfreese@gmail.com>"
   ],
@@ -15,10 +16,7 @@
   "license": "MIT",
   "homepage": "https://github.com/ericfreese/argyle",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    ".gitignore",
+    "docs"
   ]
 }
