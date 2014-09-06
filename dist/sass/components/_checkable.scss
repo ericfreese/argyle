@@ -3,9 +3,8 @@
   line-height: $line-height;
   font-size: $font-size;
   white-space: nowrap;
-  cursor: pointer;
 }
 
-@mixin ar-checkable__input($spacing: 0.4em) {
-  margin-right: $spacing;
+@mixin ar-checkable__label($spacing: 0.4em) {
+  margin-left: $spacing;
 }

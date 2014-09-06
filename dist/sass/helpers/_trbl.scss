@@ -1,0 +1,6 @@
+@mixin ar-trbl($value) {
+  top: $value;
+  right: $value;
+  bottom: $value;
+  left: $value;
+}
