@@ -13,4 +13,4 @@ A minimally opinionated library of common frontend patterns.
 
 ## Docs & Examples
 
-See docs/
+http://www.ericfreese.com/argyle/docs/
