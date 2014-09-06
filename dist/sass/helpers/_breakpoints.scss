@@ -5,11 +5,11 @@
 
   $width-query: null;
 
-  @if $from {
+  @if $from and map-has-key($breakpoints, $from) {
     $width-query: "(min-width: #{map-get($breakpoints, $from)})";
   }
 
-  @if $to {
+  @if $to and map-has-key($breakpoints, $to) {
     $to-query: "(max-width: #{map-get($breakpoints, $to) - 1px})";
 
     @if $width-query {

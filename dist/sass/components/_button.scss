@@ -1,6 +1,22 @@
 @import "../helpers/padding";
 
-@mixin ar-button_height($height, $line-height: false, $border-height: 0, $font-size: false) {
+/**
+ *
+ * Sets vertical padding so that height comes out as specified, given line-height and font-size.
+ *
+ * @group button
+ *
+ * @param {Number} $height - Height to restrict to
+ * @param {Number} $line-height (false)- Line-height to set
+ * @param {Number} $border-height (0)- Combined height of vertical borders
+ * @param {Number} $font-size (false)- Font size to set
+ *
+ * @example scss
+ *   .button {
+ *     @include ar-button-height(100px, 40px, 4px, 30px);
+ *   }
+ */
+@mixin ar-button-height($height, $line-height: false, $border-height: 0, $font-size: false) {
   $line-height: if($line-height, $line-height, $height - $border-height);
   line-height: $line-height;
   @if $font-size { font-size: $font-size; }

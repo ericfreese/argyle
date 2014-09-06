@@ -2,33 +2,6 @@
 @import "../helpers/breakpoints";
 @import "../helpers/clearfix";
 
-@mixin ar-grid-container() {
-  $grid: ar-require-context("grid");
-  $breakpoints: ar-require-context("breakpoints");
-
-  $container-margin: map-get($grid, "container-margin");
-  $container-widths: map-get($grid, "container-widths");
-
-  max-width: 100%;
-
-  @if $container-margin {
-    margin-left: $container-margin;
-    margin-right: $container-margin;
-  }
-
-  @if $container-widths {
-    @each $breakpoint, $min-width in $breakpoints {
-      @if (map-has-key($container-widths, $breakpoint)) {
-        @media (min-width: #{$min-width}) {
-          width: map-get($container-widths, $breakpoint);
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-    }
-  }
-}
-
 @mixin ar-grid-row() {
   $grid: ar-require-context("grid");
 

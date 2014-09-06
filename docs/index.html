@@ -1,0 +1,1787 @@
+<!doctype html>
+
+
+
+
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+
+<title>Argyle - v0.0.1</title>
+<link rel="stylesheet" href="assets/css/main.css" />
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width">
+<meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible">
+
+<!-- Thanks to Sass-lang.com for the icons -->
+<link href="http://sass-lang.com/favicon.ico" rel="shortcut icon">
+
+</head>
+<body>
+
+  
+  <aside class="sidebar" role="nav">
+    
+  <div class="sidebar__header">
+  <h1 class="sidebar__title">
+    
+      Argyle - 0.0.1
+    
+  </h1>
+</div>
+
+<div class="sidebar__body">
+  
+  
+
+    
+    
+      <p class="sidebar__item  sidebar__item--heading"><a href="#context">Context</a></p>
+
+      
+      
+
+        
+        
+
+        
+        
+          <p class="sidebar__item  sidebar__item--sub-heading"><a href="#context-function">functions</a></p>
+
+          
+          
+            <ul class="list-unstyled">
+            <li class="sidebar__item  sassdoc__item" data-name="ar-push-context" data-type="function">
+              <a href="#function-ar-push-context">ar-push-context
+              <span class="sidebar__annotation  sidebar__annotation--private">private</span>
+              
+              </a>
+            </li>
+            
+          
+            
+            <li class="sidebar__item  sassdoc__item" data-name="ar-pop-context" data-type="function">
+              <a href="#function-ar-pop-context">ar-pop-context
+              <span class="sidebar__annotation  sidebar__annotation--private">private</span>
+              
+              </a>
+            </li>
+            
+          
+            
+            <li class="sidebar__item  sassdoc__item" data-name="ar-get-context" data-type="function">
+              <a href="#function-ar-get-context">ar-get-context
+              
+              
+              </a>
+            </li>
+            
+          
+            
+            <li class="sidebar__item  sassdoc__item" data-name="ar-require-context" data-type="function">
+              <a href="#function-ar-require-context">ar-require-context
+              
+              
+              </a>
+            </li>
+            </ul>
+          
+        
+      
+
+        
+        
+
+        
+        
+          <p class="sidebar__item  sidebar__item--sub-heading"><a href="#context-mixin">mixins</a></p>
+
+          
+          
+            <ul class="list-unstyled">
+            <li class="sidebar__item  sassdoc__item" data-name="ar-with-context" data-type="mixin">
+              <a href="#mixin-ar-with-context">ar-with-context
+              
+              
+              </a>
+            </li>
+            </ul>
+          
+        
+      
+    
+      <p class="sidebar__item  sidebar__item--heading"><a href="#button">Button</a></p>
+
+      
+      
+
+        
+        
+
+        
+        
+          <p class="sidebar__item  sidebar__item--sub-heading"><a href="#button-mixin">mixins</a></p>
+
+          
+          
+            <ul class="list-unstyled">
+            <li class="sidebar__item  sassdoc__item" data-name="ar-button-height" data-type="mixin">
+              <a href="#mixin-ar-button-height">ar-button-height
+              
+              
+              </a>
+            </li>
+            </ul>
+          
+        
+      
+    
+      <p class="sidebar__item  sidebar__item--heading"><a href="#container">Container</a></p>
+
+      
+      
+
+        
+        
+
+        
+        
+          <p class="sidebar__item  sidebar__item--sub-heading"><a href="#container-mixin">mixins</a></p>
+
+          
+          
+            <ul class="list-unstyled">
+            <li class="sidebar__item  sassdoc__item" data-name="ar-container" data-type="mixin">
+              <a href="#mixin-ar-container">ar-container
+              
+              
+              </a>
+            </li>
+            
+          
+            
+            <li class="sidebar__item  sassdoc__item" data-name="ar-container-from-context" data-type="mixin">
+              <a href="#mixin-ar-container-from-context">ar-container-from-context
+              
+              
+              </a>
+            </li>
+            </ul>
+          
+        
+      
+    
+  
+</div>
+
+
+  </aside>
+
+  
+  <article class="main" role="main">
+
+    
+    <header class="header" role="banner">
+  <div class="container">
+  
+    <div class="header__description">
+      <p>A minimally opinionated library of common frontend patterns.</p>
+
+    </div>
+  
+
+    <div class="sassdoc__searchbar  searchbar">
+       <label for="js-search-input" class="visually-hidden">Search</label>
+       <div class="searchbar__form" id="js-search">
+         <input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search" />
+         <ul class="searchbar__suggestions" id="js-search-suggestions"></ul>
+       </div>
+     </div>
+  </div>
+</header>
+
+
+    <div class="container">
+    
+
+  
+  
+
+    
+    
+      <section class="main__section">
+        <h1 class="main__heading" id="context">Context</h1>
+
+        
+        
+
+          
+          
+
+          
+          
+            <section class="main__sub-section" id="context-function">
+              <h2 class="main__heading--secondary">functions</h2>
+
+              
+              
+                <section class="main__item  item" id="function-ar-push-context">
+
+<h3 class="item__heading">
+  
+    <span class="item__access">[private]</span>
+  
+
+  <a class="item__name" href="#function-ar-push-context">ar-push-context</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-push-context($context) { 
+  @return append($ar-context, $context, comma)
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-push-context($context) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+
+  
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Pushes a context on the stack.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$context</code></th>
+          <td data-label="desc"><p>Context to push</p>
+</td>
+          <td data-label="type">
+          
+            Map
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Returns</h3>
+
+  <p class="sassdoc__item-description"><p>New context list</p>
+
+  
+    Map
+  
+  </p>
+
+
+  
+    
+    
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+                <section class="main__item  item" id="function-ar-pop-context">
+
+<h3 class="item__heading">
+  
+    <span class="item__access">[private]</span>
+  
+
+  <a class="item__name" href="#function-ar-pop-context">ar-pop-context</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-pop-context() { 
+  $new-ar-context: ();
+  @for $i from 1 to length($ar-context) {
+    $new-ar-context: append($new-ar-context, nth($ar-context, $i), comma);
+  }
+  @return $new-ar-context;
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-pop-context() { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+
+  
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Pops a context off the stack.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <p>None.</p>
+
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Returns</h3>
+
+  <p class="sassdoc__item-description"><p>New context list</p>
+
+  
+    Map
+  
+  </p>
+
+
+  
+    
+    
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+                <section class="main__item  item" id="function-ar-get-context">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#function-ar-get-context">ar-get-context</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-get-context($context-name) { 
+  @for $i from length($ar-context) through 1 {
+    $context: nth($ar-context, $i);
+    @if map-has-key($context, $context-name) {
+      @return map-get($context, $context-name);
+    }
+  }
+
+  @return null;
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-get-context($context-name) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+
+  
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Retrieve context info.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$context-name</code></th>
+          <td data-label="desc"><p>Name of context object to retrieve</p>
+</td>
+          <td data-label="type">
+          
+            String
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Returns</h3>
+
+  <p class="sassdoc__item-description">
+  
+    Map, Null
+  
+  </p>
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  $grid: $ar-get-context(&quot;grid&quot;);
+  @if $grid {
+    // There&#39;s a grid context available.
+    // Do something with it...
+  }</code></pre>
+  </div>
+  
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+                <section class="main__item  item" id="function-ar-require-context">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#function-ar-require-context">ar-require-context</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-require-context($context-name) { 
+  $value: ar-get-context($context-name);
+  @if $value == null {
+    @error &quot;Context not specified: [#{$context-name}]&quot;
+  }
+  @return $value;
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-require-context($context-name) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+
+  
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Same behavior as <code>ar-get-context</code>, but throws an error if the context is not available.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$context-name</code></th>
+          <td data-label="desc"><p>Name of context object to retrieve</p>
+</td>
+          <td data-label="type">
+          
+            String
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Returns</h3>
+
+  <p class="sassdoc__item-description">
+  
+    Map
+  
+  </p>
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  $grid: $ar-require-context(&quot;grid&quot;);</code></pre>
+  </div>
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Throws</h3>
+
+  <ul class="list-unstyled">
+    
+      <li><p>Error when context is not available.</p>
+</li>
+    
+  </ul>
+
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+            </section>
+          
+        
+
+          
+          
+
+          
+          
+            <section class="main__sub-section" id="context-mixin">
+              <h2 class="main__heading--secondary">mixins</h2>
+
+              
+              
+                <section class="main__item  item" id="mixin-ar-with-context">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#mixin-ar-with-context">ar-with-context</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@mixin ar-with-context($context) { 
+  $ar-context: ar-push-context($context) !global;
+  @content;
+  $ar-context: ar-pop-context() !global;
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@mixin ar-with-context($context) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Make specified context(s) available during the duration of the block.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$context</code></th>
+          <td data-label="desc"><p>Context(s) to make available</p>
+</td>
+          <td data-label="type">
+          
+            Map
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  @include ar-with-context((
+    &quot;breakpoints&quot;: (
+      &quot;small&quot;:  480px,
+      &quot;medium&quot;: 768px
+    ),
+    &quot;containers&quot;: (
+      &quot;default&quot;: ( &quot;margin&quot;: 20px ),
+      &quot;small&quot;:   ( &quot;width&quot;:  460px ),
+      &quot;medium&quot;:  ( &quot;width&quot;:  95% )
+    ))) {
+
+    .responsive-container {
+      @include ar-grid-container;
+    }
+  }</code></pre>
+  </div>
+  
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+            </section>
+          
+        
+
+      </section>
+    
+      <section class="main__section">
+        <h1 class="main__heading" id="button">Button</h1>
+
+        
+        
+
+          
+          
+
+          
+          
+            <section class="main__sub-section" id="button-mixin">
+              <h2 class="main__heading--secondary">mixins</h2>
+
+              
+              
+                <section class="main__item  item" id="mixin-ar-button-height">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#mixin-ar-button-height">ar-button-height</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@mixin ar-button-height($height, $line-height: false, $border-height: 0, $font-size: false) { 
+  $line-height: if($line-height, $line-height, $height - $border-height);
+  line-height: $line-height;
+  @if $font-size { font-size: $font-size; }
+  @include ar-padding-y(($height - $line-height - $border-height) / 2);
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@mixin ar-button-height($height, $line-height: false, $border-height: 0, $font-size: false) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Sets vertical padding so that height comes out as specified, given line-height and font-size.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$height</code></th>
+          <td data-label="desc"><p>Height to restrict to</p>
+</td>
+          <td data-label="type">
+          
+            Number
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$line-height</code></th>
+          <td data-label="desc"><p>Line-height to set</p>
+</td>
+          <td data-label="type">
+          
+            Number
+          
+          </td>
+          <td data-label="default">
+          
+            <code>false</code>
+          
+          </td>
+        </tr>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$border-height</code></th>
+          <td data-label="desc"><p>Combined height of vertical borders</p>
+</td>
+          <td data-label="type">
+          
+            Number
+          
+          </td>
+          <td data-label="default">
+          
+            <code>0</code>
+          
+          </td>
+        </tr>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$font-size</code></th>
+          <td data-label="desc"><p>Font size to set</p>
+</td>
+          <td data-label="type">
+          
+            Number
+          
+          </td>
+          <td data-label="default">
+          
+            <code>false</code>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  .button {
+    @include ar-button-height(100px, 40px, 4px, 30px);
+  }</code></pre>
+  </div>
+  
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+            </section>
+          
+        
+
+      </section>
+    
+      <section class="main__section">
+        <h1 class="main__heading" id="container">Container</h1>
+
+        
+        
+
+          
+          
+
+          
+          
+            <section class="main__sub-section" id="container-mixin">
+              <h2 class="main__heading--secondary">mixins</h2>
+
+              
+              
+                <section class="main__item  item" id="mixin-ar-container">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#mixin-ar-container">ar-container</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@mixin ar-container($container) { 
+  @if map-has-key($container, &quot;margin&quot;) {
+    width: auto;
+    margin-left: map-get($container, &quot;margin&quot;);
+    margin-right: map-get($container, &quot;margin&quot;);
+  } @elseif map-has-key($container, &quot;width&quot;) {
+    width: map-get($container, &quot;width&quot;);
+    margin-left: auto;
+    margin-right: auto;
+  }
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@mixin ar-container($container) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Creates a horizontally centered container.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$container</code></th>
+          <td data-label="desc"><p>Map of container options</p>
+</td>
+          <td data-label="type">
+          
+            Map
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  @include ar-container(( &quot;margin&quot;: 20px ));
+  @include ar-container(( &quot;width&quot;: 800px ));
+  @include ar-container(( &quot;width&quot;: 90% ));</code></pre>
+  </div>
+  
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+                <section class="main__item  item" id="mixin-ar-container-from-context">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#mixin-ar-container-from-context">ar-container-from-context</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@mixin ar-container-from-context() { 
+  $containers: ar-require-context(&quot;containers&quot;);
+  $breakpoints: ar-require-context(&quot;breakpoints&quot;);
+
+  @if map-has-key($containers, &quot;default&quot;) {
+    @include ar-container(map-get($containers, &quot;default&quot;));
+  }
+
+  @each $breakpoint, $container in $containers {
+    @if $breakpoint != &#39;default&#39; {
+      @if map-has-key($breakpoints, $breakpoint) {
+        @include ar-breakpoint-query($breakpoint) {
+          @include ar-container($container);
+        }
+      } @else {
+        @warn &quot;Unknown breakpoint: [#{$breakpoint}]&quot;;
+      }
+    }
+  }
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@mixin ar-container-from-context() { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Creates a horizontally centered container from current <code>breakpoints</code> and <code>containers</code> contexts.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <p>None.</p>
+
+
+
+  
+    
+    
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  // SCSS
+  @include ar-with-context((
+    &quot;breakpoints&quot;: (
+      &quot;small&quot;:  480px,
+      &quot;medium&quot;: 768px
+    ),
+    &quot;containers&quot;: (
+      &quot;default&quot;: ( &quot;margin&quot;: 20px ),
+      &quot;small&quot;:   ( &quot;width&quot;:  460px ),
+      &quot;medium&quot;:  ( &quot;width&quot;:  95% )
+    ))) {
+
+    .responsive-container {
+      @include ar-grid-container;
+    }
+  }</code></pre>
+  </div>
+  
+
+  
+    
+    
+
+  
+    
+    
+
+
+  
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+            </section>
+          
+        
+
+      </section>
+    
+
+  
+
+
+    </div>
+
+    
+    
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      
+        <div class="footer__project-info  project-info">
+          <!-- Name and URL -->
+          
+            <span class="project-info__name">Argyle</span>
+          
+
+          <!-- Version -->
+          <span class="project-info__version"> - v0.0.1</span>
+
+          <!-- License -->
+          
+        </div>
+      
+
+      
+        <span class="footer__watermark">Built with <a href="https://github.com/SassDoc/sassdoc">SassDoc</a>.</span>
+      
+    </div>
+  </footer>
+
+
+  </article>
+
+
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+<script src="assets/js/fuse.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/prism.min.js"></script>
+
+</body>
+</html>
