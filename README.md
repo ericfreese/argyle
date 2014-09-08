@@ -14,4 +14,5 @@ A minimally opinionated library of common frontend patterns.
 ## Docs & Examples
 
 http://www.ericfreese.com/argyle/docs/
+
 https://github.com/ericfreese/argyle-test
