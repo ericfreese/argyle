@@ -51,19 +51,19 @@
  *     }
  *   }
  *
- * @requires {Mixin} ar-with-context
  */
-@mixin ar-container-from-context() {
-  $containers: ar-require-context("containers");
-  $breakpoints: ar-require-context("breakpoints");
 
-  @if map-has-key($containers, "default") {
-    @include ar-container(map-get($containers, "default"));
+@mixin ar-container-from-context {
+  $containers-ctx: ar-require-context("containers");
+  $breakpoints-ctx: ar-require-context("breakpoints");
+
+  @if map-has-key($containers-ctx, "default") {
+    @include ar-container(map-get($containers-ctx, "default"));
   }
 
-  @each $breakpoint, $container in $containers {
+  @each $breakpoint, $container in $containers-ctx {
     @if $breakpoint != 'default' {
-      @if map-has-key($breakpoints, $breakpoint) {
+      @if map-has-key($breakpoints-ctx, $breakpoint) {
         @include ar-breakpoint-query($breakpoint) {
           @include ar-container($container);
         }

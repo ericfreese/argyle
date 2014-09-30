@@ -1,25 +1,10 @@
-@import "../helpers/padding";
 @import "../helpers/new_stacking_context";
 @import "../helpers/styled_form_input";
+@import "../helpers/total_height";
 
 @mixin ar-styled-select($display: inline-block) {
   @include ar-new-stacking-context;
   display: $display;
-}
-
-@mixin ar-styled-select--size($height: false, $line-height: false, $border-height: 0, $font-size: false) {
-  @if $height {
-    height: $height;
-    box-sizing: border-box;
-  }
-
-  @if $line-height {
-    line-height: $line-height;
-  }
-
-  @if $height and $line-height {
-    @include ar-calculate-padding-y($height, $line-height, $border-height);
-  }
 }
 
 @mixin ar-styled-select__select {

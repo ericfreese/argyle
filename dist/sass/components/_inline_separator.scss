@@ -1,7 +1,6 @@
 @mixin ar-inline-separator($spacing: 10px, $separator: ' | ', $display: inline-block, $pseudo: after) {
   display: $display;
 
-
   @if $pseudo == before {
     &:nth-child(n+2) {
       margin-left: $spacing;

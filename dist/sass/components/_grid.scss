@@ -3,9 +3,9 @@
 @import "../helpers/clearfix";
 
 @mixin ar-grid-row() {
-  $grid: ar-require-context("grid");
+  $grid-ctx: ar-require-context("grid");
 
-  $gutter-width: map-get($grid, "gutter-width");
+  $gutter-width: map-get($grid-ctx, "gutter-width");
 
   @if ($gutter-width) {
     margin-left: -($gutter-width / 2);
@@ -15,24 +15,32 @@
   @include ar-clearfix;
 }
 
-@mixin ar-grid-row-item($width) {
-  $grid: ar-require-context("grid");
+@mixin ar-grid-row-item($width, $float: left) {
+  $grid-ctx: ar-require-context("grid");
 
-  $gutter-width: map-get($grid, "gutter-width");
+  $gutter-width: map-get($grid-ctx, "gutter-width");
 
   padding-left: $gutter-width / 2;
   padding-right: $gutter-width / 2;
   box-sizing: border-box;
-  float: left;
   width: $width;
+  float: $float;
 }
 
-@mixin ar-grid-cols($cols, $from: null, $to: null) {
-  $grid: ar-require-context("grid");
+@mixin ar-grid-row-item-offset($offset) {
+  margin-left: $offset;
+}
 
-  $columns: map-get($grid, "columns");
+@mixin ar-grid-cols($width-cols, $offset-cols: null, $from: null, $to: null, $float: null) {
+  $grid-ctx: ar-require-context("grid");
+
+  $columns: map-get($grid-ctx, "columns");
+  $float: if(map-has-key($grid-ctx, "float"), map-get($grid-ctx, "float"), left) !default;
 
   @include ar-breakpoint-query($from, $to) {
-    @include ar-grid-row-item(percentage($cols / $columns));
+    @include ar-grid-row-item(percentage($width-cols / $columns), $float);
+    @if $offset-cols {
+      @include ar-grid-row-item-offset(percentage($offset-cols / $columns))
+    }
   }
 }

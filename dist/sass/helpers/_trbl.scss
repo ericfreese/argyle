@@ -1,4 +1,5 @@
-@mixin ar-trbl($value) {
+@mixin ar-atrbl($value) {
+  position: absolute;
   top: $value;
   right: $value;
   bottom: $value;

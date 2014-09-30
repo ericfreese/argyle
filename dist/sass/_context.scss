@@ -1,3 +1,5 @@
+@import "functions/map_merge_deep";
+
 $ar-context: ();
 
 /**
@@ -46,19 +48,32 @@ $ar-context: ();
  *   }
  *
  * @param {String} $context-name - Name of context object to retrieve
+ * @param {String} $not-found (null) - Object to return if context is not found
  *
  * @returns {Map | null}
  *
  */
-@function ar-get-context($context-name) {
-  @for $i from length($ar-context) through 1 {
-    $context: nth($ar-context, $i);
-    @if map-has-key($context, $context-name) {
-      @return map-get($context, $context-name);
+
+@function ar-get-context($context-name, $not-found: ()) {
+  $found-contexts: ();
+  $merged-context: ();
+
+  @if length($ar-context) > 0 {
+    @each $frame in $ar-context {
+      @if map-has-key($frame, $context-name) {
+        $found-contexts: append($found-contexts, map-get($frame, $context-name));
+      }
     }
   }
 
-  @return null;
+  @if length($found-contexts) > 0 {
+    @each $context in $found-contexts {
+      $merged-context: ar-map-merge-deep($merged-context, $context);
+    }
+    @return $merged-context;
+  } @else {
+    @return $not-found;
+  }
 }
 
 /**
@@ -78,7 +93,7 @@ $ar-context: ();
  *
  */
 @function ar-require-context($context-name) {
-  $value: ar-get-context($context-name);
+  $value: ar-get-context($context-name, null);
   @if $value == null {
     @error "Context not specified: [#{$context-name}]"
   }
