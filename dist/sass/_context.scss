@@ -48,12 +48,11 @@ $ar-context: ();
  *   }
  *
  * @param {String} $context-name - Name of context object to retrieve
- * @param {String} $not-found (null) - Object to return if context is not found
+ * @param {Any} $not-found (null) - Object to return if context is not found
  *
  * @returns {Map | null}
  *
  */
-
 @function ar-get-context($context-name, $not-found: ()) {
   $found-contexts: ();
   $merged-context: ();
@@ -74,6 +73,35 @@ $ar-context: ();
   } @else {
     @return $not-found;
   }
+}
+
+
+/**
+ *
+ * Retrieve value from context.
+ *
+ * @group context
+ *
+ * @example scss
+ *   $columns: $ar-get-context-value("grid", "columns", 12);
+ *
+ * @example scss
+ *   $grid: $ar-require-context("grid");
+ *   $columns: $ar-get-context-value($grid, "columns", 12);
+ *
+ * @param {String} $ctx - Context object or name of context object to retrieve
+ * @param {String} $key - Key in context object to retrieve value for
+ * @param {Any} $not-found (null) - Object to return if key is not found
+ *
+ * @returns {Map | Any}
+ *
+ */
+@function ar-get-context-value($ctx, $key, $not-found: null) {
+  @if (type_of($ctx) == string) {
+    $ctx: ar-get-context($ctx);
+  }
+
+  @return if(map-has-key($ctx, $key), map-get($ctx, $key), $not-found);
 }
 
 /**

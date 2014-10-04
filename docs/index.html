@@ -79,6 +79,15 @@
             
           
             
+            <li class="sidebar__item  sassdoc__item" data-name="ar-get-context-value" data-type="function">
+              <a href="#function-ar-get-context-value">ar-get-context-value
+              
+              
+              </a>
+            </li>
+            
+          
+            
             <li class="sidebar__item  sassdoc__item" data-name="ar-require-context" data-type="function">
               <a href="#function-ar-require-context">ar-require-context
               
@@ -102,32 +111,6 @@
             <ul class="list-unstyled">
             <li class="sidebar__item  sassdoc__item" data-name="ar-with-context" data-type="mixin">
               <a href="#mixin-ar-with-context">ar-with-context
-              
-              
-              </a>
-            </li>
-            </ul>
-          
-        
-      
-    
-      <p class="sidebar__item  sidebar__item--heading"><a href="#button">Button</a></p>
-
-      
-      
-
-        
-        
-
-        
-        
-          <p class="sidebar__item  sidebar__item--sub-heading"><a href="#button-mixin">mixins</a></p>
-
-          
-          
-            <ul class="list-unstyled">
-            <li class="sidebar__item  sassdoc__item" data-name="ar-button-height" data-type="mixin">
-              <a href="#mixin-ar-button-height">ar-button-height
               
               
               </a>
@@ -562,20 +545,43 @@
     
   
 
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
 
 <div class="relative  clear  code--collapsed">
-  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-get-context($context-name) { 
-  @for $i from length($ar-context) through 1 {
-    $context: nth($ar-context, $i);
-    @if map-has-key($context, $context-name) {
-      @return map-get($context, $context-name);
+  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-get-context($context-name, $not-found: null) { 
+  $found-contexts: ();
+  $merged-context: ();
+
+  @if length($ar-context) &gt; 0 {
+    @each $frame in $ar-context {
+      @if map-has-key($frame, $context-name) {
+        $found-contexts: append($found-contexts, map-get($frame, $context-name));
+      }
     }
   }
 
-  @return null;
+  @if length($found-contexts) &gt; 0 {
+    @each $context in $found-contexts {
+      $merged-context: ar-map-merge-deep($merged-context, $context);
+    }
+    @return $merged-context;
+  } @else {
+    @return $not-found;
+  }
  }</code></pre>
 
-  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-get-context($context-name) { ... }</code></pre>
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-get-context($context-name, $not-found: null) { ... }</code></pre>
 
   
 </div>
@@ -636,6 +642,22 @@
           </td>
         </tr>
       
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$not-found</code></th>
+          <td data-label="desc"><p>Object to return if context is not found</p>
+</td>
+          <td data-label="type">
+          
+            Any
+          
+          </td>
+          <td data-label="default">
+          
+            <code>null</code>
+          
+          </td>
+        </tr>
+      
     </tbody>
   </table>
 
@@ -666,6 +688,245 @@
     // There&#39;s a grid context available.
     // Do something with it...
   }</code></pre>
+  </div>
+  
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+                <section class="main__item  item" id="function-ar-get-context-value">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#function-ar-get-context-value">ar-get-context-value</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-get-context-value($ctx, $key, $not-found: null) { 
+  @if (type_of($ctx) == string) {
+    $ctx: ar-get-context($ctx);
+  }
+
+  @return if(map-has-key($ctx, $key), map-get($ctx, $key), $not-found);
+ }</code></pre>
+
+  <pre class="item__code  item__code--collapsed  language-scss"><code>@function ar-get-context-value($ctx, $key, $not-found: null) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+
+  
+  
+    
+
+  
+  
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Retrieve value from context.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$ctx</code></th>
+          <td data-label="desc"><p>Context object or name of context object to retrieve</p>
+</td>
+          <td data-label="type">
+          
+            String
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$key</code></th>
+          <td data-label="desc"><p>Key in context object to retrieve value for</p>
+</td>
+          <td data-label="type">
+          
+            String
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$not-found</code></th>
+          <td data-label="desc"><p>Object to return if key is not found</p>
+</td>
+          <td data-label="type">
+          
+            Any
+          
+          </td>
+          <td data-label="default">
+          
+            <code>null</code>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Returns</h3>
+
+  <p class="sassdoc__item-description">
+  
+    Map, Any
+  
+  </p>
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  $columns: $ar-get-context-value(&quot;grid&quot;, &quot;columns&quot;, 12);</code></pre>
+  </div>
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">  $grid: $ar-require-context(&quot;grid&quot;);
+  $columns: $ar-get-context-value($grid, &quot;columns&quot;, 12);</code></pre>
   </div>
   
 
@@ -751,7 +1012,7 @@
 
 <div class="relative  clear  code--collapsed">
   <pre class="item__code  item__code--expanded  language-scss"><code>@function ar-require-context($context-name) { 
-  $value: ar-get-context($context-name);
+  $value: ar-get-context($context-name, null);
   @if $value == null {
     @error &quot;Context not specified: [#{$context-name}]&quot;
   }
@@ -1106,282 +1367,6 @@
       </section>
     
       <section class="main__section">
-        <h1 class="main__heading" id="button">Button</h1>
-
-        
-        
-
-          
-          
-
-          
-          
-            <section class="main__sub-section" id="button-mixin">
-              <h2 class="main__heading--secondary">mixins</h2>
-
-              
-              
-                <section class="main__item  item" id="mixin-ar-button-height">
-
-<h3 class="item__heading">
-  
-
-  <a class="item__name" href="#mixin-ar-button-height">ar-button-height</a>
-
-  
-
-  
-</h3>
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-
-<div class="relative  clear  code--collapsed">
-  <pre class="item__code  item__code--expanded  language-scss"><code>@mixin ar-button-height($height, $line-height: false, $border-height: 0, $font-size: false) { 
-  $line-height: if($line-height, $line-height, $height - $border-height);
-  line-height: $line-height;
-  @if $font-size { font-size: $font-size; }
-  @include ar-padding-y(($height - $line-height - $border-height) / 2);
- }</code></pre>
-
-  <pre class="item__code  item__code--collapsed  language-scss"><code>@mixin ar-button-height($height, $line-height: false, $border-height: 0, $font-size: false) { ... }</code></pre>
-
-  
-</div>
-
-
-
-
-
-
-  
-
-  
-  
-    
-  
-
-  
-    
-    
-  <h3 class="item__sub-heading">Description</h3>
-
-  <div class="item__description"><p>Sets vertical padding so that height comes out as specified, given line-height and font-size.</p>
-</div>
-
-
-  
-    
-    <h3 class="item__sub-heading">Parameters</h3>
-
-
-
-  <table class="item__parameters">
-    <thead>
-      <tr>
-        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
-        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
-        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
-        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-        <tr class="item__parameter">
-          <th scope="row" data-label="name"><code>$height</code></th>
-          <td data-label="desc"><p>Height to restrict to</p>
-</td>
-          <td data-label="type">
-          
-            Number
-          
-          </td>
-          <td data-label="default">
-          
-            &mdash;<span class="visually-hidden"> none</span>
-          
-          </td>
-        </tr>
-      
-        <tr class="item__parameter">
-          <th scope="row" data-label="name"><code>$line-height</code></th>
-          <td data-label="desc"><p>Line-height to set</p>
-</td>
-          <td data-label="type">
-          
-            Number
-          
-          </td>
-          <td data-label="default">
-          
-            <code>false</code>
-          
-          </td>
-        </tr>
-      
-        <tr class="item__parameter">
-          <th scope="row" data-label="name"><code>$border-height</code></th>
-          <td data-label="desc"><p>Combined height of vertical borders</p>
-</td>
-          <td data-label="type">
-          
-            Number
-          
-          </td>
-          <td data-label="default">
-          
-            <code>0</code>
-          
-          </td>
-        </tr>
-      
-        <tr class="item__parameter">
-          <th scope="row" data-label="name"><code>$font-size</code></th>
-          <td data-label="desc"><p>Font size to set</p>
-</td>
-          <td data-label="type">
-          
-            Number
-          
-          </td>
-          <td data-label="default">
-          
-            <code>false</code>
-          
-          </td>
-        </tr>
-      
-    </tbody>
-  </table>
-
-
-
-  
-    
-    
-
-  
-    
-    
-  <h3 class="item__sub-heading">Example</h3>
-
-  
-  <div class="item__example  example">
-    
-    <pre class="example__code"><code class="language-scss">  .button {
-    @include ar-button-height(100px, 40px, 4px, 30px);
-  }</code></pre>
-  </div>
-  
-
-  
-    
-    
-
-  
-    
-    
-
-
-
-
-  
-    
-    
-
-
-
-
-
-  
-    
-    
-
-  
-    
-    
-
-
-
-
-  
-    
-    
-
-  
-    
-    
-  
-    
-    
-
-  
-
-
-
-</section>
-              
-            </section>
-          
-        
-
-      </section>
-    
-      <section class="main__section">
         <h1 class="main__heading" id="container">Container</h1>
 
         
@@ -1597,16 +1582,16 @@
 
 <div class="relative  clear  code--collapsed">
   <pre class="item__code  item__code--expanded  language-scss"><code>@mixin ar-container-from-context() { 
-  $containers: ar-require-context(&quot;containers&quot;);
-  $breakpoints: ar-require-context(&quot;breakpoints&quot;);
+  $containers-ctx: ar-require-context(&quot;containers&quot;);
+  $breakpoints-ctx: ar-require-context(&quot;breakpoints&quot;);
 
-  @if map-has-key($containers, &quot;default&quot;) {
-    @include ar-container(map-get($containers, &quot;default&quot;));
+  @if map-has-key($containers-ctx, &quot;default&quot;) {
+    @include ar-container(map-get($containers-ctx, &quot;default&quot;));
   }
 
-  @each $breakpoint, $container in $containers {
+  @each $breakpoint, $container in $containers-ctx {
     @if $breakpoint != &#39;default&#39; {
-      @if map-has-key($breakpoints, $breakpoint) {
+      @if map-has-key($breakpoints-ctx, $breakpoint) {
         @include ar-breakpoint-query($breakpoint) {
           @include ar-container($container);
         }
@@ -1691,10 +1676,6 @@
   
     
     
-
-
-  
-
 
 
 
