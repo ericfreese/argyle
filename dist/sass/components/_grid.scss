@@ -40,10 +40,10 @@
     &:nth-child(n+2) {
       margin-top: $vspace;
     }
-  }
 
-  &:nth-child(-n+#{$items-per-row}) {
-    margin-top: 0;
+    &:nth-child(-n+#{$items-per-row}) {
+      margin-top: 0;
+    }
   }
 }
 
